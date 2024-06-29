@@ -1,0 +1,19 @@
+{
+  "item.artefact.multi_tools" : "Multi Tools",
+  "item.artefact.multi_tool_axe" : "Multi Tool Axe",
+  "item.artefact.multi_tool_pickaxe" : "Multi Tool Pickaxe",
+  "item.artefact.multi_tool_shovel" : "Multi Tool Shovel",
+  "item.artefact.multi_tool_hoe" : "Multi Tool Hoe",
+
+  "text.artefact.multi_tools_tooltip" : "Current Mode : ",
+  "text.artefact.item.artefact.multi_tools" : "None",
+  "text.artefact.item.artefact.multi_tool_axe": "Axe",
+  "text.artefact.item.artefact.multi_tool_pickaxe": "Pickaxe",
+  "text.artefact.item.artefact.multi_tool_shovel": "Shovel",
+  "text.artefact.item.artefact.multi_tool_hoe": "Hoe",
+
+  "gui.artefact.multi_tools" : "Multi Tool Interface",
+
+  "key.artefact.ability_key": "Open Multi Tool Interface",
+  "key.categorie.artefact" : "Artefact"
+}

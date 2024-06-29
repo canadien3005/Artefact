@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#!#",
+    "!@!",
+    "#!#"
+  ],
+  "key": {
+    "#" : {
+      "item": "minecraft:green_wool"
+    },
+    "@" : {
+      "item": "minecraft:stick"
+    },
+    "!" : {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result" : {
+    "item" : "artefact:multi_tools"
+  }
+}

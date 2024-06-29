@@ -1,10 +1,12 @@
 {
-  "parent": "item/generated",
-  "textures": {"layer0": "artefact:item/multi_tools"},
-  "overrides" : [
-    {"predicate": {"artefact:item": 0.0}, "model": "artefact:item/multi_tool_axe"},
-    {"predicate": {"artefact:item": 0.25}, "model": "artefact:item/multi_tool_pickaxe"},
-    {"predicate": {"artefact:item": 0.50}, "model": "artefact:item/multi_tool_shovel"},
-    {"predicate": {"artefact:item": 0.75}, "model": "artefact:item/multi_tool_hoe"}
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "artefact:item/multi_tools"
+  },
+  "overrides": [
+    {"predicate" : {"artefact:item" : 0.0}, "model": "artefact:item/multi_tool_axe"},
+    {"predicate" : {"artefact:item" : 0.25}, "model": "artefact:item/multi_tool_pickaxe"},
+    {"predicate" : {"artefact:item" : 0.50}, "model": "artefact:item/multi_tool_shovel"},
+    {"predicate" : {"artefact:item" : 0.75}, "model": "artefact:item/multi_tool_hoe"}
   ]
 }

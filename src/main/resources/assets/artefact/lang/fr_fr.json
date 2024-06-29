@@ -1,0 +1,19 @@
+{
+  "item.artefact.multi_tools" : "Outil multifonctionnel",
+  "item.artefact.multi_tool_axe" : "Outil multifonctionnel Hache",
+  "item.artefact.multi_tool_pickaxe" : "Outil multifonctionnel Pioche",
+  "item.artefact.multi_tool_shovel" : "Outil multifonctionnel Shovel",
+  "item.artefact.multi_tool_hoe" : "Outil multifonctionnel Houe",
+
+  "text.artefact.multi_tools_tooltip" : "Mode actuel : ",
+  "text.artefact.item.artefact.multi_tools" : "Aucun",
+  "text.artefact.item.artefact.multi_tool_axe": "Hache",
+  "text.artefact.item.artefact.multi_tool_pickaxe": "Pioche",
+  "text.artefact.item.artefact.multi_tool_shovel": "Pelle",
+  "text.artefact.item.artefact.multi_tool_hoe": "Houe",
+
+  "gui.artefact.multi_tools" : "Interface de l'outil multifonctionnel",
+
+  "key.artefact.ability_key": "Ouvrir l'interface de l'outil multifonctionnel",
+  "key.categorie.artefact" : "Artefact"
+}

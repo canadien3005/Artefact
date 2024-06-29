@@ -1,7 +1,6 @@
 package ca.canadien3005.artefact.screen;
 
 import ca.canadien3005.artefact.Artefact;
-import ca.canadien3005.artefact.item.ModItems;
 import ca.canadien3005.artefact.item.custom.MultiToolsItem;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,8 +12,9 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
-public class ModScreenMultiTools extends Screen {
+public class MultiToolsScreen extends Screen {
 
     protected static final ResourceLocation GUI_TEXTURE =
             new ResourceLocation(Artefact.MOD_ID, "textures/gui/multi_tools.png");
@@ -22,21 +22,31 @@ public class ModScreenMultiTools extends Screen {
     protected static final ResourceLocation BUTTON_TEXTURE =
             new ResourceLocation(Artefact.MOD_ID, "textures/gui/small_button_arrow.png");
 
-    private int xSize = 172;
-    private int ySize = 172;
+    private final int xSize = 172;
+    private final int ySize = 172;
     private int guiY;
     private int guiX;
-    private MultiToolsItem current;
+    private static ItemStack itemStack;
     private static int page;
-    private static int numberOfPages = (int) Math.ceil(ModItems.multiToolItems.size()/8);
-    public static int[][] coordinate;
-    public static boolean shouldClose = false;
+    private static final int numberOfPages = (int) Math.ceil(MultiToolsItem.items.size()/8f);
+    private static int[][] coordinate;
+    private static boolean shouldClose = false;
+    private static int indice = -2;
+
+    public ImageButton nextPageButton;
+    public ImageButton prevPageButton;
+    public ImageButton imageButton;
+    public ImageButton[] imageButtons = new ImageButton[8];
 
     // Constructeur
-    public ModScreenMultiTools(MultiToolsItem item) {
-        super(new TranslatableComponent(Artefact.MOD_ID + ".gui" + ".multi_tools"));
-        this.current = item;
+    public MultiToolsScreen(ItemStack itemStack) {
+        super(new TranslatableComponent("gui." + Artefact.MOD_ID + ".multi_tools"));
         page = 1;
+        MultiToolsScreen.itemStack = itemStack;
+    }
+
+    public static void setIndice(int i) {
+        indice = i;
     }
 
     @Override
@@ -44,17 +54,22 @@ public class ModScreenMultiTools extends Screen {
         // Initialisation des éléments du GUI (boutons, champs de texte, etc.)
         this.guiX = (this.width - this.xSize) /2;
         this.guiY = (this.height - this.ySize) /2;
+
+        imageButton = new ImageButton((this.width-16)/2, (this.height-16)/2, 16, 16, 240, 240, BUTTON_TEXTURE, this::selectedItem);
+        nextPageButton = new ImageButton((this.width/2) + 12, (this.height/2) + 15, 7, 12, 10, 5, BUTTON_TEXTURE, this::nextPage);
+        prevPageButton = new ImageButton((this.width/2) - 18, (this.height/2) + 15, 7, 12, 23, 5, BUTTON_TEXTURE, this::previousPage);
     }
 
     @Override
     public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        matrixStack.clear();
         if (shouldClose) {
             shouldClose = false;
             onClose();
         }
 
+        this.removed();
         drawBackground(matrixStack);
+        drawItem(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
@@ -71,17 +86,12 @@ public class ModScreenMultiTools extends Screen {
         RenderSystem.setShaderTexture(0, GUI_TEXTURE);
         blit(matrixStack, guiX, guiY, 0, 0, 172, 172, this.xSize, this.ySize);
 
-        //RenderSystem.setShaderTexture(0, getItemTexture(current));
-        //blit(matrixStack, (this.width - 16) /2, (this.height - 16) /2, 0, 0, 16, 16, 16, 16);
-
         if (numberOfPages > 1){
-            addRenderableWidget(new ImageButton((this.width/2) + 12, (this.height/2) + 15, 7, 12, 10, 5, BUTTON_TEXTURE, this::nextPage));
-            addRenderableWidget(new ImageButton((this.width/2) - 18, (this.height/2) + 15, 7, 12, 23, 5, BUTTON_TEXTURE, this::previousPage));
+            addRenderableWidget(nextPageButton);
+            addRenderableWidget(prevPageButton);
             drawCenteredString(matrixStack, this.font, page + "/" + (int) numberOfPages, this.width / 2, (this.height/2) + 17, 16777215);
             // Add arrow to switch page
         }
-
-        drawItem(matrixStack);
 
         //this.blit(matrixStack, x, y, posXTexture, posYTexture, width, height, this.xSize, this.ySize);
     }
@@ -97,23 +107,25 @@ public class ModScreenMultiTools extends Screen {
                 {xCenter + 74, yCenter - 1},
                 {xCenter + 56, yCenter + 56},
                 {xCenter, yCenter + 74},
-                {xCenter - 56, yCenter - 57},
+                {xCenter - 56, yCenter + 56},
                 {xCenter - 74, yCenter - 1},
-                {xCenter - 56, yCenter + 56}
+                {xCenter - 56, yCenter - 57}
         };
 
-        for (int i = 8*(page-1); i < 8*page && i < ModItems.multiToolItems.size(); i++){
-            Item item = ModItems.multiToolItems.get(i);
+        RenderSystem.setShaderTexture(0, getItemTexture(itemStack.getItem()));
+        blit(matrixStack, xCenter, yCenter, 0, 0, 16, 16, 16, 16);
+        addRenderableWidget(imageButton);
 
-            RenderSystem.setShaderTexture(0, getItemTexture(current.getCurrent()));
-            blit(matrixStack, xCenter, yCenter, 0, 0, 16, 16, 16, 16);
-            addRenderableWidget(new ImageButton(xCenter, yCenter, 16, 16, 240, 240, BUTTON_TEXTURE, this::selectedItem));
+        for (int i = 8*(page-1); i < 8*page && i < MultiToolsItem.items.size(); i++){
+            Item item = MultiToolsItem.items.get(i);
 
             RenderSystem.setShaderTexture(0, getItemTexture(item));
             blit(matrixStack, coordinate[i%8][0], coordinate[i%8][1], 0, 0, 16, 16, 16, 16);
+            imageButtons[i%8] = new ImageButton(coordinate[i%8][0], coordinate[i%8][1], 16, 16, 240, 240, BUTTON_TEXTURE, this::selectedItem);
 
-            addRenderableWidget(new ImageButton(coordinate[i%8][0], coordinate[i%8][1], 16, 16, 240, 240, BUTTON_TEXTURE, this::selectedItem));
+            addRenderableWidget(imageButtons[i%8]);
         }
+
     }
 
     private ResourceLocation getItemTexture(Item item) {
@@ -147,13 +159,31 @@ public class ModScreenMultiTools extends Screen {
         }
 
         if (itemIndice != -1){
-            current.changeCurrentItem(itemIndice+((page-1)*8));
+            indice = itemIndice+((page-1)*8);
         } else {
             if (coordinate[0][0] == x && coordinate[2][1]+1 == y){
-                current.changeToDefault();
+                indice = -1;
             }
         }
 
         shouldClose = true;
+    }
+
+    public static int getIndice() {
+        return indice;
+    }
+
+    @Override
+    public void removed() {
+        this.removeWidget(imageButton);
+        this.removeWidget(prevPageButton);
+        this.removeWidget(nextPageButton);
+
+        for (ImageButton button : imageButtons) {
+            this.removeWidget(button);
+        }
+
+
+        super.removed();
     }
 }
