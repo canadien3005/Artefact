@@ -5,6 +5,12 @@
   "item.artefact.multi_tool_shovel" : "Multi Tool Shovel",
   "item.artefact.multi_tool_hoe" : "Multi Tool Hoe",
 
+  "item.artefact.fire_ball" : "Fire Ball",
+  "item.artefact.thunder_ball" : "Thunder Ball",
+  "item.artefact.water_ball" : "Water Ball",
+  "item.artefact.wither_ball" : "Wither Ball",
+  "item.artefact.instant_death_ball" : "Instant Death Ball",
+
   "text.artefact.multi_tools_tooltip" : "Current Mode : ",
   "text.artefact.item.artefact.multi_tools" : "None",
   "text.artefact.item.artefact.multi_tool_axe": "Axe",
@@ -12,8 +18,14 @@
   "text.artefact.item.artefact.multi_tool_shovel": "Shovel",
   "text.artefact.item.artefact.multi_tool_hoe": "Hoe",
 
+  "text.artefact.ballLimit": "Limit Reach",
+
   "gui.artefact.multi_tools" : "Multi Tool Interface",
 
   "key.artefact.ability_key": "Open Multi Tool Interface",
-  "key.categorie.artefact" : "Artefact"
+  "key.categorie.artefact" : "Artefact",
+
+  "death.attack.artefact.name": "Did you really think that would not kill you",
+
+  "itemGroup.artefact.artefact_tab": "Artefact"
 }

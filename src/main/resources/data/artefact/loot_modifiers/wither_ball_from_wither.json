@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/wither"
+    }
+  ],
+
+  "addition": "artefact:wither_ball",
+  "type": "artefact:wither_ball_from_wither"
+}

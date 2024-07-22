@@ -95,10 +95,6 @@ public class MultiToolsItem extends DiggerItem {
 
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        //if(items == null){
-            //items = getItems(ArtefactCommonConfigs.MULTI_TOOLS_TOOL.get());
-        //}
-
         if (pIsSelected) {
             changeItemStack(pStack);
             if (!(pLevel.isClientSide())){

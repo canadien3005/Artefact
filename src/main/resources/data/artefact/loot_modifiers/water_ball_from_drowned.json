@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/drowned"
+    }
+  ],
+
+  "addition": "artefact:water_ball",
+  "type" : "artefact:water_ball_from_drowned"
+}

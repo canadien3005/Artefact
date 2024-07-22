@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_treasure"
+    }
+  ],
+
+  "addition": "artefact:water_ball",
+  "type": "artefact:water_ball_in_shipwreck"
+}

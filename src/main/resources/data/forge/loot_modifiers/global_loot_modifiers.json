@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "entries": [
+    "artefact:water_ball_in_shipwreck",
+    "artefact:water_ball_in_small_city",
+    "artefact:water_ball_in_big_city",
+    "artefact:water_ball_from_drowned",
+
+    "artefact:fire_ball_in_ruined_portal",
+    "artefact:fire_ball_from_blaze",
+
+    "artefact:wither_ball_in_nether_bridge",
+    "artefact:wither_ball_from_wither_skeleton",
+    "artefact:wither_ball_from_wither"
+  ]
+}

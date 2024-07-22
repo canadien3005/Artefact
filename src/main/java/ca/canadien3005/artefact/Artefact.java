@@ -49,8 +49,6 @@ public class Artefact {
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
 
         MultiToolsItem.items = new ArrayList<>();
         MultiToolsItem.items.add(ModItems.MULTI_TOOL_AXE.get());
@@ -75,7 +73,8 @@ public class Artefact {
                 for(Item item : MultiToolsItem.items) {
                     if (Item.byId(value) == item) {
                         return indice*increment;
-                    };
+                    }
+
                     indice++;
                 }
 
